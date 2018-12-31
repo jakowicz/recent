@@ -12,6 +12,8 @@ Features to be added:
  - Add support for when multiple commands are run using 'and'
  - Add support to return output as json
  - Allow count to be passed as a parameter
+ - Fix unicode error with Python 3
+
 """
 
 from termcolor import colored
