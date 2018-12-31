@@ -12,13 +12,12 @@ Features to be added:
  - Add support for when multiple commands are run using 'and'
  - Add support to return output as json
  - Allow count to be passed as a parameter
- - Fix unicode error with Python 3
-
 """
 
 from termcolor import colored
 from operator import itemgetter
 
+import platform
 import os
 import hashlib
 import sys
@@ -53,8 +52,14 @@ def is_command_valid(command):
 
     return single_quotes % 2 == 0 and double_quotes % 2 == 0
 
+def get_python_major_version():
+    return platform.python_version().split(".")[0]  
+
 def get_command_hash(command):
-    return hashlib.sha1(command).hexdigest()
+    if get_python_major_version() == 2:
+        return hashlib.sha1(command.hexdigest())
+    else:
+        return hashlib.sha1(command.encode("utf-8")).hexdigest()
 
 def is_program_valid(filter_by_program, program):
     return "=" not in program and program == filter_by_program
