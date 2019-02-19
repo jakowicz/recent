@@ -2,6 +2,10 @@
 
 This tool will read your system account's ~/.zsh_history file and process it, displaying which commands you more frequently run for the program you specify.
 
+## Prerequisities
+
+- Python (2 or 3)
+
 ## Installation
 
 First you need to install by brew tap, then install the package.
