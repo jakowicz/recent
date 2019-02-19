@@ -41,14 +41,22 @@ class RecentCommands:
             "count": 1
         })
 
+def py3():
+    return sys.version_info[0] == 3
+
 def history_file_lines():
     homedir = os.path.expanduser("~")
 
-    return open("{0}/.zsh_history".format(homedir), "r")
+    if py3():
+        file = open("{0}/.zsh_history".format(homedir), "r", encoding="latin-1")
+    else:
+        file = open("{0}/.zsh_history".format(homedir), "r")
+
+    return file.readlines()
 
 def is_command_valid(command):
-    single_quotes = command.count('\'')
-    double_quotes = command.count('"')
+    single_quotes = command.count("'")
+    double_quotes = command.count("\"")
 
     return single_quotes % 2 == 0 and double_quotes % 2 == 0
 
@@ -96,5 +104,8 @@ def init(program_filter):
     print_recent_commands(5, commands_ordered_by_count)
 
 
-if __name__ == '__main__':
-    init(sys.argv[1])
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        init(sys.argv[1])
+    else:
+        exit("Program not provided")
