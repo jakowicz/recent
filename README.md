@@ -12,12 +12,12 @@ First you need to install by brew tap, then install the package.
 
 ```
 brew tap jakowicz/tap
-brew install cheatsheet
+brew install recent
 ```
 
 ## Usage
 
-Run the recent.py command (I'm going to remove .py in the next release), pass one argument, which is the program you would like to show the recent history of. So for my "gpg" recent history, you would run:
+Run the recent.py command (I'm going to remove .py in the next release), pass one argument, which is the program you would like to show the recent history of. So for your recent popular "gpg" commands, you would run:
 
 ```
 recent.py gpg
